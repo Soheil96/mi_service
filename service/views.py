@@ -4,4 +4,21 @@ from django.shortcuts import render, HttpResponse
 
 
 def index(request):
-    return HttpResponse('salam')
+    return render(request, 'index.html')
+
+
+def inquiry(request):
+    return render(request, 'inquiry.html')
+
+
+def contactus(request):
+    return render(request, 'contactus.html')
+
+
+def termsofservice(request):
+    return render(request, 'termsofservice.html')
+
+
+def result(request):
+    return render(request, 'result.html')
+

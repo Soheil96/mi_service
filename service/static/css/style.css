@@ -1,0 +1,120 @@
+@font-face {
+  font-family: 'Behdad-Regular';
+  src: url('../fonts/Behdad-Regular.otf');
+  src: url('../fonts/Behdad-Regular.otf') format('embedded-opentype'), url('../fonts/Behdad-Regular.woff') format('woff'), url('../fonts/Behdad-Regular.ttf') format('truetype'), url('../fonts/Behdad-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: 'Behdad-Regular', Arial, "Helvetica Neue", Helvetica, sans-serif;
+  color: #777;
+}
+
+.bgimg {
+  position: relative;
+  opacity: 0.85;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.caption {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  color: #000;
+}
+
+.caption span.border {
+  background-color: #111;
+  color: #fff;
+  padding: 18px;
+  font-size: 25px;
+  letter-spacing: 10px;
+}
+
+h3 {
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: #111;
+}
+
+/* Turn off parallax scrolling for tablets and phones */
+@media only screen and (max-device-width: 1024px) {
+  .bgimg {
+    background-attachment: scroll;
+  }
+}
+
+.bgdiv {
+  color: #777;
+  background-color:white;
+  padding:50px 80px;
+  text-align: right;
+}
+
+/* The navigation bar */
+.navbar {
+  overflow: hidden;
+  background-color: #333333;
+  color: whitesmoke;
+  opacity: 1;
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+  width: 100%; /* Full width */
+  z-index: 2;
+  text-align: center;
+}
+
+/* Links inside the navbar */
+.navbar a {
+  display: block;
+  color: #f2f2f2;
+  padding: 14px 16px;
+  text-decoration: none;
+  margin-top: -20px;
+}
+
+/* Change background on mouse-over */
+.navbar a:hover {
+  background: #ddd;
+  color: black;
+}
+
+.main {/* Add a top margin to avoid content overlay */
+  height: 90%;
+}
+
+.footbar {
+  overflow: hidden;
+  background-color: #333333;
+  color: whitesmoke;
+  opacity: 1;
+  position: fixed; /* Set the navbar to fixed position */
+  bottom: 0; /* Position the navbar at the top of the page */
+  width: 100%; /* Full width */
+  z-index: 2;
+  text-align: right;
+}
+
+.column {
+  float: left;
+  width: 33.33%;
+}
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="navbar">
+        {% include "header.html" %}
+    </div>
+
+
+    <div class="footbar">
+        {% include 'footer.html' %}
+    </div>
+{% endblock %}

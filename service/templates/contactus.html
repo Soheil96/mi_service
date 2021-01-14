@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="navbar">
+        {% include "header.html" %}
+    </div>
+
+    <div class="row">
+        <div class="column">.</div>
+        <div class="column" style="margin-top: 15%">
+            <table>
+                <tr>
+                    <td align="right">
+                        <input type="text" name="fname" id="fname" >
+                    </td>
+                    <td>
+                        :نام
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <input type="text" name="lname" id="lname" >
+                    </td>
+                    <td>
+                        :نام خانوادگی
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <input type="email" name="email" id="email" >
+                    </td>
+                    <td>
+                        :ایمیل
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <textarea name="text" id="text" cols="70%" rows="10%"></textarea>
+                    </td>
+                    <td>
+                        :پیام
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <input type="submit" value="ارسال">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="column">.</div>
+    </div>
+
+    <div class="footbar">
+        {% include 'footer.html' %}
+    </div>
+{% endblock %}

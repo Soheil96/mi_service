@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="navbar">
+        {% include "header.html" %}
+    </div>
+
+    <div class="row">
+        <div class="column">.</div>
+        <div class="column" style="margin-top: 15%">
+            <table align="center">
+                <tr>
+                    <td align="right">
+                        <input type="text" name="fname" id="fname" >
+                    </td>
+                    <td>
+                        :شماره سریال گارانتی
+                    </td>
+                </tr>
+                <tr><td><br></td></tr>
+                <tr>
+                    <td align="right">
+                        <input type="submit" value="استعلام">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="column">.</div>
+    </div>
+
+    <div class="footbar">
+        {% include 'footer.html' %}
+    </div>
+{% endblock %}
