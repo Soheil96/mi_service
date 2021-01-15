@@ -9,8 +9,15 @@
     <div class="navbar">
         {% include "header.html" %}
     </div>
-
-
+    <div class="column sz4"> &nbsp; </div>
+    <div class="column sz2" style="margin-top: 15%">
+        {% if product  %}
+        {% else %}
+            <p align="right">شماره سریال گارانتی وارد شده در سیستم ثبت نشده است</p>
+            <p align="right"> در صورتی که از درست وارد کردن شماره سریال موجود در ضمانت نامه اطمینان دارید از طریق بخش تماس با ما موضوع را اطلاع دهید تا بررسی های لازم صورت بگیرد</p>
+        {% endif %}
+    </div>
+    <div class="column sz4"> &nbsp; </div>
     <div class="footbar">
         {% include 'footer.html' %}
     </div>

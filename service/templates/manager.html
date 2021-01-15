@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'mi_service/css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="column sz4"> &nbsp; </div>
+    <div class="column sz2" style="margin-top: 15%">
+        <table align="center" border="3" style="text-align: center" class="space">
+            <tr>
+                <td>
+                    تاریخ اتمام گارانتی
+                </td>
+                <td>
+                    شماره گارانتی
+                </td>
+                <td>
+                    سریال محصول
+                </td>
+                <td>
+                    نام محصول
+                </td>
+            </tr>
+            {% for product in products %}
+                <tr>
+                    <td>
+                        {{ product.endDate }}
+                    </td>
+                    <td>
+                        {{ product.warrantyNumber }}
+                    </td>
+                    <td>
+                        {{ product.serialNumber }}
+                    </td>
+                    <td>
+                        {{ product.product }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="column sz4">  &nbsp;</div>
+{% endblock %}
