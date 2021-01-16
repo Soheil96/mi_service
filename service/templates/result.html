@@ -12,6 +12,32 @@
     <div class="column sz4"> &nbsp; </div>
     <div class="column sz2" style="margin-top: 15%">
         {% if product  %}
+            <table align="center">
+                <tr>
+                    <td>
+                        {{ product.product }}
+                    </td>
+                    <td align="right">
+                         :نام محصول
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {{ product.serialNumber }}
+                    </td>
+                    <td align="right">
+                         :سریال محصول
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {{ product.endDate }}
+                    </td>
+                    <td align="right">
+                         :تاریخ اتمام گارانتی
+                    </td>
+                </tr>
+            </table>
         {% else %}
             <p align="right">شماره سریال گارانتی وارد شده در سیستم ثبت نشده است</p>
             <p align="right"> در صورتی که از درست وارد کردن شماره سریال موجود در ضمانت نامه اطمینان دارید از طریق بخش تماس با ما موضوع را اطلاع دهید تا بررسی های لازم صورت بگیرد</p>
