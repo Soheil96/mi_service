@@ -7,7 +7,13 @@
 
 {% block content %}
     <div class="column sz4"> &nbsp; </div>
-    <div class="column sz2" style="margin-top: 15%">
+    <div class="column sz2" style="margin-top: 5%">
+		<p style="color: green; font-size: large" align="center">
+			{% for sn in serials %}
+				{{ sn }}
+				<br>
+			{% endfor %}
+		</p>
         <table align="center" border="3" style="text-align: center" class="space">
             <tr>
                 <td>
@@ -40,6 +46,7 @@
                 </tr>
             {% endfor %}
         </table>
+	<br><br><br><br><br>
     </div>
     <div class="column sz4">  &nbsp;</div>
 {% endblock %}

@@ -10,5 +10,6 @@ urlpatterns = [
     path('inquiry/result_1/', views.result_1, name='result_1'),
     path('termsofservice/', views.terms_of_service, name='termsofservice'),
     path('manager/', views.manager, name='manager'),
+    path('manager/success/<str:serials>/', views.manager, name='manager'),
     path('manager/add/', views.add_warranty, name='addwarranty'),
 ]

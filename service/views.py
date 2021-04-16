@@ -61,21 +61,26 @@ def result_1(request):
 
 
 @login_required
-def manager(request):
+def manager(request, serials=''):
     products = Warranty.objects.all()
-    return render(request, 'manager.html', {'products': products})
+    return render(request, 'manager.html', {'products': products, 'serials': serials.split('\r\n')})
 
 
 @login_required
 def add_warranty(request):
     if request.method == 'POST':
-        SN = request.POST['serial_number']
+        serials = request.POST['serial_number'].split('\r\n')
         productName = request.POST['product']
         month = request.POST['length']
         startDate = datetime.strptime(request.POST['start_date'], '%Y-%m-%d').date()
         endDate = startDate + relativedelta(months=int(month))
-        warrantyNumber = get_warranty_number(month)
-        product = Warranty(serialNumber=SN, product=productName, length=month, startDate=startDate, endDate=endDate, warrantyNumber=warrantyNumber)
-        product.save()
-        return redirect(manager)
+        res = ""
+        for serial in serials:
+            if len(serial) > 5:
+                SN = serial.replace(' ', '')
+                res += SN + '\r\n'
+                warrantyNumber = 'new-' + SN
+                product = Warranty(serialNumber=SN, product=productName, length=month, startDate=startDate, endDate=endDate, warrantyNumber=warrantyNumber)
+                product.save()
+        return redirect(manager, res)
     return render(request, 'addwarranty.html')
