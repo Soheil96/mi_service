@@ -106,6 +106,9 @@ h3 {
 .column {
   float: left;
 }
+.column.sz1 {
+  width: 75%;
+}
 .column.sz2 {
   width: 50%;
 }
@@ -114,6 +117,12 @@ h3 {
 }
 .column.sz4 {
   width: 25%;
+}
+.column.sz5 {
+  width: 20%;
+}
+.column.sz6 {
+  width: 16.6%;
 }
 @media screen and (max-width: 600px) {
   .column {

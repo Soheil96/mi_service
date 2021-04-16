@@ -36,14 +36,27 @@ def terms_of_service(request):
 def result(request):
     product = None
     if request.method=='POST':
-        print(request.POST)
         SN = request.POST['warranty_number']
-        print(SN)
         product = Warranty.objects.filter(warrantyNumber=SN)
         if len(product) == 1:
             product = product[0]
         else:
             product = None
+    return render(request, 'result.html', {'product': product})
+
+
+def result_1(request):
+    product = None
+    if request.method=='POST':
+        post = ['', '(TH)']
+        SN = request.POST['serial_number'].replace(' ', '')
+        for post_n in post:
+            product = Warranty.objects.filter(serialNumber=SN+post_n)
+            if len(product) == 1:
+                product = product[0]
+                break
+            else:
+                product = None
     return render(request, 'result.html', {'product': product})
 
 
