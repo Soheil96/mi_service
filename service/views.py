@@ -58,13 +58,14 @@ def result_1(request):
                 break
             else:
                 product = None
-        for pre_n in pre:
-            product = Warranty.objects.filter(serialNumber=SN+pre_n)
-            if len(product) == 1:
-                product = product[0]
-                break
-            else:
-                product = None
+        if product is None:
+            for pre_n in pre:
+                product = Warranty.objects.filter(serialNumber=pre_n+SN)
+                if len(product) == 1:
+                    product = product[0]
+                    break
+                else:
+                    product = None
     return render(request, 'result.html', {'product': product})
 
 
