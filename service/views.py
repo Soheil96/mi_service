@@ -49,9 +49,17 @@ def result_1(request):
     product = None
     if request.method=='POST':
         post = ['', '(TH)']
+        pre = ['', '28818/']
         SN = request.POST['serial_number'].replace(' ', '')
         for post_n in post:
             product = Warranty.objects.filter(serialNumber=SN+post_n)
+            if len(product) == 1:
+                product = product[0]
+                break
+            else:
+                product = None
+        for pre_n in pre:
+            product = Warranty.objects.filter(serialNumber=SN+pre_n)
             if len(product) == 1:
                 product = product[0]
                 break
@@ -82,5 +90,5 @@ def add_warranty(request):
                 warrantyNumber = 'new-' + SN
                 product = Warranty(serialNumber=SN, product=productName, length=month, startDate=startDate, endDate=endDate, warrantyNumber=warrantyNumber)
                 product.save()
-        return redirect(manager, res)
+        return redirect(manager, res.replace('/', ''))
     return render(request, 'addwarranty.html')
