@@ -4,11 +4,16 @@ from django.utils import timezone
 
 
 class Message(models.Model):
+    #TODO add serial number
     firstName = models.CharField(max_length=50)
     lastName = models.CharField(max_length=50)
     email = models.EmailField(max_length=100, null=False)
     message = models.TextField(max_length=1000)
+    date = models.DateTimeField(auto_now=True)
     phoneNumber = models.CharField(max_length=20, null=False, default='-')
+
+    def __str__(self):
+        return self.firstName + ' ' + self.lastName + ' - ' + self.date.__str__()
 
 
 class Warranty(models.Model):

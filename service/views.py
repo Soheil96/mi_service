@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from datetime import datetime
+from datetime import date
 from dateutil.relativedelta import relativedelta
 from .funcs import *
 
@@ -45,6 +46,22 @@ def result(request):
     return render(request, 'result.html', {'product': product})
 
 
+def make_warranty(serial):
+    newProduct = Warranty()
+    newProduct.product = None
+    newProduct.serialNumber = serial
+    newProduct.endDate = date(2022, 5, 15)
+    if '0502B0063' in serial and len(serial) == 13:
+        newProduct.product = 'Solar ساعت هوشمند هایلو'
+    if 'Q701A01B0' in serial and len(serial) == 18:
+        newProduct.product = 'مشکی رنگ imilab kw66 ساعت هوشمند شیائومی'
+    if '28818/' in serial and len(serial) == 15:
+        newProduct.product = 'مشکی mi watch lite ساعت هوشمند شیائومی'
+    if newProduct.product is None:
+        return None
+    return newProduct
+
+
 def result_1(request):
     product = None
     if request.method=='POST':
@@ -66,6 +83,8 @@ def result_1(request):
                     break
                 else:
                     product = None
+        if product is None:
+            product = make_warranty(SN)
     return render(request, 'result.html', {'product': product})
 
 
