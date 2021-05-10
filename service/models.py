@@ -9,6 +9,7 @@ class Message(models.Model):
     lastName = models.CharField(max_length=50)
     email = models.EmailField(max_length=100, null=False)
     message = models.TextField(max_length=1000)
+    serialNumber = models.CharField(max_length=50, null=True)
     date = models.DateTimeField(auto_now=True)
     phoneNumber = models.CharField(max_length=20, null=False, default='-')
 

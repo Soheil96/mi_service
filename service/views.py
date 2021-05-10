@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from datetime import datetime
 from datetime import date
 from dateutil.relativedelta import relativedelta
+from django.conf import settings as conf_settings
+from django.core.mail import send_mail
 from .funcs import *
 
 # Create your views here.
@@ -24,8 +26,17 @@ def contact_us(request):
         phone = request.POST['phone']
         email = request.POST['email']
         text = request.POST['text']
-        message = Message(firstName=fname, lastName=lname, phoneNumber=phone, email=email, message=text)
+        serial = request.POST['serial']
+        message = Message(firstName=fname, lastName=lname, phoneNumber=phone, email=email, message=text, serialNumber=serial)
         message.save()
+        email_message = fname + ' ' + lname + '\n' + phone + '\n' + email + '\n\n' + serial + '\n' + text
+        send_mail(
+            'گارانتی',
+            email_message,
+            conf_settings.DEFAULT_FROM_EMAIL,
+            [conf_settings.DEFAULT_EMAIL_RECEIVER],
+            fail_silently=False,
+        )
         result = True
     return render(request, 'contactus.html', {'result': result})
 
@@ -55,7 +66,9 @@ def make_warranty(serial):
         newProduct.product = 'Solar ساعت هوشمند هایلو'
     if 'Q701A01B0' in serial and len(serial) == 18:
         newProduct.product = 'مشکی رنگ imilab kw66 ساعت هوشمند شیائومی'
-    if '28818/' in serial and len(serial) == 15:
+    if '28818/A0Z9' in serial and len(serial) == 15:
+        newProduct.product = 'مشکی mi watch lite ساعت هوشمند شیائومی'
+    if '28818/B1QR1' in serial and len(serial) == 15:
         newProduct.product = 'مشکی mi watch lite ساعت هوشمند شیائومی'
     if newProduct.product is None:
         return None
