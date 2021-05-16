@@ -24,7 +24,7 @@
                 <table align="center">
                     <tr>
                         <td align="right">
-                            <input dir="rtl" type="text" name="fname" id="fname" >
+                            <input dir="rtl" type="text" name="fname" id="fname" value="{{ fname }}">
                         </td>
                         <td>
                             :نام
@@ -32,7 +32,7 @@
                     </tr>
                     <tr>
                         <td align="right">
-                            <input dir="rtl" type="text" name="lname" id="lname" >
+                            <input dir="rtl" type="text" name="lname" id="lname" value="{{ lname }}">
                         </td>
                         <td>
                             :نام خانوادگی
@@ -40,7 +40,7 @@
                     </tr>
                     <tr>
                         <td align="right">
-                            <input type="text" name="phone" id="phone" required>
+                            <input type="text" name="phone" id="phone" required value="{{ phone }}">
                         </td>
                         <td>
                             :شماره تماس
@@ -48,7 +48,7 @@
                     </tr>
                     <tr>
                         <td align="right">
-                            <input type="email" name="email" id="email" required>
+                            <input type="email" name="email" id="email" required value="{{ email }}">
                         </td>
                         <td>
                             :ایمیل
@@ -56,7 +56,7 @@
                     </tr>
 					<tr>
                         <td align="right">
-                            <input type="text" name="serial" id="serial" required>
+                            <input type="text" name="serial" id="serial" required value="{{ serial }}">
                         </td>
                         <td>
                             :شماره سریال کالا
@@ -64,12 +64,22 @@
                     </tr>
                     <tr>
                         <td>
-                            <textarea dir="rtl" name="text" id="text" cols="70%" rows="10%" required></textarea>
+                            <textarea dir="rtl" name="text" id="text" cols="70%" rows="10%" required>{{ text }}</textarea>
                         </td>
                         <td>
                             :پیام
                         </td>
                     </tr>
+					<tr>
+						<td align="center">
+							{{ form.captcha }}
+						</td>
+						<td>
+							{% if form.captcha.errors %}
+								<p style="color: red">کد امنیتی اشتباه وارد شده است*</p>
+							{% endif %}
+						</td>
+					</tr>
                     <tr>
                         <td align="center">
                             <input type="submit" value="ارسال">

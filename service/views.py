@@ -6,6 +6,7 @@ from dateutil.relativedelta import relativedelta
 from django.conf import settings as conf_settings
 from django.core.mail import send_mail
 from .funcs import *
+from .forms import CaptchaForm
 
 # Create your views here.
 
@@ -20,6 +21,7 @@ def inquiry(request):
 
 def contact_us(request):
     result = False
+    fname = lname = phone = email = text = serial = ''
     if request.method == 'POST':
         fname = request.POST['fname']
         lname = request.POST['lname']
@@ -27,18 +29,25 @@ def contact_us(request):
         email = request.POST['email']
         text = request.POST['text']
         serial = request.POST['serial']
-        message = Message(firstName=fname, lastName=lname, phoneNumber=phone, email=email, message=text, serialNumber=serial)
-        message.save()
-        email_message = fname + ' ' + lname + '\n' + phone + '\n' + email + '\n\n' + serial + '\n' + text
-        send_mail(
-            'گارانتی',
-            email_message,
-            conf_settings.DEFAULT_FROM_EMAIL,
-            [conf_settings.DEFAULT_EMAIL_RECEIVER],
-            fail_silently=False,
-        )
-        result = True
-    return render(request, 'contactus.html', {'result': result})
+        form = CaptchaForm(request.POST)
+        if form.is_valid():
+            message = Message(firstName=fname, lastName=lname, phoneNumber=phone, email=email, message=text, serialNumber=serial)
+            message.save()
+            email_message = fname + ' ' + lname + '\n' + phone + '\n' + email + '\n\n' + serial + '\n' + text
+            send_mail(
+                'گارانتی',
+                email_message,
+                conf_settings.DEFAULT_FROM_EMAIL,
+                [conf_settings.DEFAULT_EMAIL_RECEIVER],
+                fail_silently=False,
+            )
+            result = True
+    else:
+        form = CaptchaForm
+    if result:
+        fname = lname = phone = email = text = serial = ''
+    return render(request, 'contactus.html', {'result': result, 'form': form, 'fname': fname, 'lname': lname,
+                                              'phone': phone, 'email': email, 'text': text, 'serial': serial})
 
 
 def terms_of_service(request):
