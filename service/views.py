@@ -105,8 +105,9 @@ def result_1(request):
                     break
                 else:
                     product = None
-        if product is None:
-            product = make_warranty(SN)
+        #if product is None:
+        #    product = make_warranty(SN)
+        product.endDate += relativedelta(months=1)
     return render(request, 'result.html', {'product': product})
 
 
